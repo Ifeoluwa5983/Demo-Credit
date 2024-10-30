@@ -8,6 +8,7 @@ export const NOT_FOUND = (type: string) => `${type} not found`;
 export const LOGIN_SUCCESSFUL = 'Login successful';
 export const SUCCESSFUL_WITHDRAWAL = 'Funds has been withdrawn successfully from your wallet';
 export const SUCCESSFUL_WALLET_FUNDING = 'Funds top-up successful';
+export const SUCCESSFUL_FUNDS_TRANSFER = 'Funds transfer successful';
 export const USER_NOT_EXIST = 'User does not exist';
 export const INVALID_LOGIN_DETAILS = 'Invalid email or password';
 export const INVALID_PIN = 'Invalid PIN';
