@@ -1,6 +1,8 @@
 import {db} from '../../config/database';
 import {UserData} from "./interfaces";
 import TokenService from "./tokenService";
+import axios from 'axios';
+import config from "../../config/env/index";
 
 class AuthService {
 
@@ -10,8 +12,8 @@ class AuthService {
         this.tokenService = new TokenService();
     }
 
-     signupUser = async (data: UserData): Promise<any>  => {
-        const { firstName, lastName, email, password, phoneNumber, country, countryCode, transactionPin } = data;
+    signupUser = async (data: UserData): Promise<any> => {
+        const {firstName, lastName, email, password, phoneNumber, country, countryCode, transactionPin} = data;
         try {
             await db('users')
                 .insert({
@@ -37,10 +39,10 @@ class AuthService {
         }
     }
 
-     getUserByEmail = async (email: string): Promise<any> => {
+    getUserByEmail = async (email: string): Promise<any> => {
         try {
             return await db('users')
-                .select('id', 'first_name', 'last_name', 'password', 'email', 'phone_number','country',
+                .select('id', 'first_name', 'last_name', 'password', 'email', 'phone_number', 'country',
                     'country_code', 'created_at', 'updated_at')
                 .where('email', email)
                 .first();
@@ -61,7 +63,7 @@ class AuthService {
         }
     }
 
-     getUserById = async (id: number): Promise<any> => {
+    getUserById = async (id: number): Promise<any> => {
         try {
             return await db('users')
                 .select('id', 'first_name', 'last_name', 'email', 'transaction_pin', 'phone_number', 'created_at', 'updated_at')
@@ -74,7 +76,7 @@ class AuthService {
 
     createWallet = async (userId: number, currency: string): Promise<any> => {
         try {
-             await db('wallets')
+            await db('wallets')
                 .insert({
                     user_id: userId,
                     currency,
@@ -97,14 +99,21 @@ class AuthService {
         }
     };
 
-    getWalletByUserId = async (userId: number): Promise<any[]> => {
+    checkKarma = async (identity: string) => {
         try {
-            return await db('wallets')
-                .where('user_id', userId);
+            const response = await axios.get(`https://adjutor.lendsqr.com/v2/verification/karma/${identity}`, {
+                headers: {
+                    Authorization: `Bearer ${config?.KARMA_API_KEY}`
+                }
+            });
+            return response.data;
+
         } catch (error) {
-            throw new Error(`Error fetching wallets: ${error.message}`);
+            console.error('Error during Karma check:', error);
+            return error.response;
         }
-    }
+    };
+
 }
 
 export default AuthService;
