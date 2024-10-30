@@ -66,6 +66,25 @@ class PaymentValidator {
             );
         };
 
+    validateWalletToWalletFunding: (req: Request, res: Response, next: NextFunction) => any = async (
+        req,
+        res,
+        next
+    ) => {
+        const schema = Joi.object({
+            amount: Joi.number().min(100).required(),
+            currency: Joi.string().required(),
+            sendToUserId: Joi.number().required().positive()
+        });
+
+        this.validateRequestBody(
+            req,
+            res,
+            next,
+            schema
+        );
+    };
+
     private readonly handleError = (
         res: Response,
         message: string,

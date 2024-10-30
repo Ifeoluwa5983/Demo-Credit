@@ -26,4 +26,13 @@ Router.post(
     paymentController.withdrawFunds
 );
 
+Router.post(
+    '/wallet-to-wallet/transfer',
+    authMiddleware.getAuthToken,
+    authMiddleware.validateUserAuthToken,
+    paymentValidator.validateWalletToWalletFunding,
+    paymentMiddleware.checkUserWalletExists,
+    paymentController.walletToWalletFunding
+);
+
 export const paymentRouter = Router;

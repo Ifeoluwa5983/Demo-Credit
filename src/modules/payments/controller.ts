@@ -59,7 +59,7 @@ class PaymentController {
 
             const transactionData: TransactionData = {
                 walletId,
-                amount,
+                amount: -amount,
                 fees: 0,
                 balance: newBalance,
                 reference,
@@ -81,22 +81,24 @@ class PaymentController {
         }
     }
 
-    // walletToWalletFunding = async (req: Request, res: Response): Promise<void> => {
-    //     try {
-    //         const { currency, sendToUserId, amount } = req.body;
-    //
-    //         await this.paymentService.fundWallet(walletIdFrom, walletIdTo, amount);
-    //
-    //         success(
-    //             res,
-    //             enums.SUCCESSFUL_WITHDRAWAL,
-    //             enums.HTTP_OK,
-    //             transactionData
-    //         );
-    //     } catch (err) {
-    //         errorResponse(res, err.message, enums.HTTP_INTERNAL_SERVER_ERROR);
-    //     }
-    // }
+    walletToWalletFunding = async (req: Request, res: Response): Promise<void> => {
+        try {
+            const { currency, sendToUserId, amount } = req.body;
+            const { user } = req;
+
+            const fundingResult = await this.paymentService.walletToWalletFunding(
+                user?.id,
+                sendToUserId,
+                currency,
+                amount
+            );
+
+            success(res, enums.SUCCESSFUL_FUNDS_TRANSFER, enums.HTTP_OK, fundingResult);
+        } catch (err) {
+            errorResponse(res, err.message, enums.HTTP_INTERNAL_SERVER_ERROR);
+        }
+    };
+
 }
 
 export const paymentController = new PaymentController();
