@@ -5,7 +5,7 @@ import enums from "../../shared/lib/enums";
 import countries from 'i18n-iso-countries';
 import countryCodes from 'country-list';
 
-class AuthController {
+export class AuthController {
     private authService: AuthService;
 
     constructor() {
