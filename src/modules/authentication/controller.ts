@@ -16,6 +16,11 @@ class AuthController {
         try {
             const { firstName, lastName, email, password, phoneNumber, country, countryCode, transactionPin } = req.body;
 
+            const karmaResult = await this.authService.checkKarma(email);
+
+            if (karmaResult.status !== enums.HTTP_NOT_FOUND) {
+                return errorResponse(res, enums.BLACKLISTED_EMAIL, enums.HTTP_UNAUTHORIZED);
+            }
             const user = await this.authService.signupUser({ firstName, lastName, email, password, phoneNumber, country,
                 countryCode, transactionPin });
 

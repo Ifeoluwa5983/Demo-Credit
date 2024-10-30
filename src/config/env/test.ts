@@ -9,6 +9,7 @@ const test = {
   JWT_SECRET: process.env.DEMO_CREDIT_DEV_JWT_SECRET,
   JWT_TIME_TO_LIVE: process.env.DEMO_CREDIT_DEV_JWT_TIME_TO_LIVE,
   SALT_ROUND: process.env.DEMO_CREDIT_DEV_SALT_ROUND,
+  KARMA_API_KEY: process.env.DEMO_CREDIT_KARMA_API_KEY
 };
 
 export default test;

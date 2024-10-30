@@ -15,4 +15,5 @@ export const INVALID_PIN = 'Invalid PIN';
 export const NO_TOKEN = 'Please provide a token';
 export const INVALID = (type: string) => `${type} is invalid`;
 export const SESSION_EXPIRED = 'Session expired';
-export const INSUFFICIENT_BALANCE = 'User deactivated/blacklisted';
+export const INSUFFICIENT_BALANCE = 'Insufficient wallet balnace';
+export const BLACKLISTED_EMAIL = 'User email has been blacklisted';
