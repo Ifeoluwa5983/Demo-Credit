@@ -8,7 +8,9 @@ describe('AuthController', () => {
     let authController: AuthController;
     let authServiceMock: sinon.SinonStubbedInstance<AuthService>;
     let req: Partial<Request>;
-    let res: Partial<Response>;
+    // let res: Partial<Response>;
+
+    let res: sinon.SinonStubbedInstance<Response>;
 
     beforeEach(() => {
         authServiceMock = sinon.createStubInstance(AuthService);
@@ -19,7 +21,7 @@ describe('AuthController', () => {
         res = {
             json: sinon.stub().returnsThis(),
             status: sinon.stub().returnsThis(),
-        };
+        } as unknown as sinon.SinonStubbedInstance<Response>;
     });
 
     describe('signupUser', () => {
