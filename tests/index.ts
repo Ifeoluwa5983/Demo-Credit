@@ -1,2 +1,7 @@
-import './unit/controller/authentication/index'
-import './unit/services/authentication/index'
+// Unit tests
+import './unit/authService';
+import './unit/globalLogger'
+
+// Integration tests
+import './integration/authentication/index';
+import './integration/payments/index'
