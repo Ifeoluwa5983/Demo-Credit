@@ -5,7 +5,7 @@
   "main": "index.ts",
   "scripts": {
     "migrate": "knex migrate:latest --knexfile knexfile.ts",
-    "start": "npm run build && node dist/src/index.js",
+    "start": "npm run build && knex migrate:latest && node dist/src/index.js",
     "build": "rm -rf dist && tsc",
     "dev": "nodemon --exec ts-node ./src/index.ts --mode development",
     "lint": "eslint \"{src,apps,libs}/**/*.ts\" --fix",
