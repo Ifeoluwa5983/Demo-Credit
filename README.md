@@ -46,6 +46,16 @@ npm run dev
 https://documenter.getpostman.com/view/27297926/2sAY4vg2aK
 ___
 
+## Entity Relationship Diagram
+https://dbdiagram.io/d/Demo-Credit-Ifeoluwa-Oluwafemi-6724fb30b1b39dd858314bc8
+
+---
+
+## Implementation Documantation
+https://docs.google.com/document/d/1OpESBIG59VkKPwOxUXqZ9JNkLNWEKfghOQUNmSxkv-4/edit?tab=t.0#heading=h.9721n3vhum4
+
+---
+
 ## Technologies
 
 - NodeJS

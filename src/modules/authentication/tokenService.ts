@@ -31,7 +31,7 @@ class TokenService {
       );
     }
     try {
-      const timeToLive = dayjs().add(Number(config?.JWT_TIME_TO_LIVE), 'hours');
+      const timeToLive = dayjs().add(Number(12), 'hours');
       const data = {
         user_id: user.id,
         email: user.email,
