@@ -11,8 +11,8 @@ export async function up(knex: Knex): Promise<void> {
         table.string("transaction_pin").notNullable();
         table.string("phone_number").notNullable().unique();
         table.string("password").notNullable();
-        table.datetime("created_at").defaultTo(knex.fn.now());
-        table.datetime("updated_at").defaultTo(knex.fn.now());
+        table.datetime("created_at");
+        table.datetime("updated_at");
     });
 
     await knex.schema.createTable("wallets", (table) => {
@@ -20,8 +20,8 @@ export async function up(knex: Knex): Promise<void> {
         table.integer("user_id").unsigned().notNullable();
         table.string("currency").notNullable();
         table.decimal("balance", 10, 2).defaultTo(0.00);
-        table.datetime("created_at").defaultTo(knex.fn.now());
-        table.datetime("updated_at").defaultTo(knex.fn.now());
+        table.datetime("created_at");
+        table.datetime("updated_at");
 
         table.foreign("user_id").references("id").inTable("users").onDelete("CASCADE");
     });
@@ -34,7 +34,7 @@ export async function up(knex: Knex): Promise<void> {
         table.decimal("balance", 10, 2).notNullable();
         table.string("reference").notNullable().unique();
         table.enum("transaction_type", ["credit", "debit"]).notNullable();
-        table.datetime("created_at").defaultTo(knex.fn.now());
+        table.datetime("created_at");
 
         table.foreign("wallet_id").references("id").inTable("wallets").onDelete("CASCADE");
     });
