@@ -47,7 +47,6 @@ class AuthMiddleware {
                         body: { pin },
                     } = req;
 
-                    console.log(user)
                     const verifyHash = await HashText.verifyHash(
                         pin,
                         String(user?.transaction_pin)
